@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sessao_id: 
+  sigla: MyString
+  descricao: MyString
+
+two:
+  sessao_id: 
+  sigla: MyString
+  descricao: MyString

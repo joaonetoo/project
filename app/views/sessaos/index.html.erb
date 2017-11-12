@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+    <h2 class="page-header">Todas As Sessões</h2>
+
+    <div class="panel-body">
+        <div class="table-responsive table-bordered">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Questionario</th>
+                    <th>Sigla</th>
+                    <th>Descricao</th>
+                    <th colspan="2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @sessaos.each do |sessao| %>
+                        <tr>
+                            <td><%= sessao.questionario_id %></td>
+                            <td><%= sessao.sigla %></td>
+                             <td><%= sessao.descricao %></td>
+                            <td><%= link_to 'Editar', edit_sessao_path(sessao) %></td>
+                            <td><%= link_to 'Excluir', sessao, method: :delete, data: { confirm: 'Realmente deseja excluir a sessão?' } %></td>
+
+                        </tr>
+                  <% end %>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+
+<%= link_to 'Cadastrar Nova Sessão', new_sessao_path %>

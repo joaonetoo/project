@@ -1,0 +1,33 @@
+
+<p id="notice"><%= notice %></p>
+    <h2 class="page-header">Todos Os Tópicos</h2>
+
+    <div class="panel-body">
+        <div class="table-responsive table-bordered">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Sessão</th>
+                    <th>Sigla</th>
+                    <th>Descricao</th>
+                    <th colspan="2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @topicos.each do |topico| %>
+                        <tr>
+                            <td><%= topico.sessao.sigla %></td>
+                            <td><%= topico.sigla %></td>
+                             <td><%= topico.descricao %></td>
+                            <td><%= link_to 'Editar', edit_topico_path(topico) %></td>
+                            <td><%= link_to 'Excluir', topico, method: :delete, data: { confirm: 'Você está certo disto?' } %></td>
+
+                        </tr>
+                  <% end %>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+
+<%= link_to 'Cadastrar Novo Topico', new_topico_path %>

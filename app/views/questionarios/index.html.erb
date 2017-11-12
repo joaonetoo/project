@@ -1,0 +1,31 @@
+
+<p id="notice"><%= notice %></p>
+    <h2 class="page-header">Questionários</h2>
+
+    <div class="panel-body">
+        <div class="table-responsive table-bordered">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th colspan="3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @questionarios.each do |questionario| %>
+                        <tr>
+                            <td><%= questionario.titulo %></td>
+                            <td><%= link_to 'Show', questionario %></td>
+                            <td><%= link_to 'Edit', edit_questionario_path(questionario) %></td>
+                            <td><%= link_to 'Destroy', questionario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+                        </tr>
+                  <% end %>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+
+
+<%= link_to 'Novo  Questionario', new_questionario_path %>

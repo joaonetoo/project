@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<%# link_to 'Edit', edit_questionario_path(@questionario) %> 
+<%# link_to 'Back', questionarios_path %>
+<div id="sessoes"> 
+
+<% @sessoes.each do |sessao| %>
+	 <p><button class="btn btn-warning btn-sm"  id="<%= sessao.id %>" type="button"><i class="fa fa-plus"></i>
+      </button> <b><%= sessao.sigla %> </b> | <%= sessao.descricao %></p>
+	      <% sessao.topicos.each do |topico| %>
+		   <div style="display: none;" id="<%= topico.id %>s">
+		      <hr>
+
+			 <p><button class="btn btn-warning btn-sm"  id="<%= topico.id %>t" type="button"><i class="fa fa-plus"></i>
+		      </button> <b><%= topico.sigla %> </b> | <%= topico.descricao %></p>
+		     </div>
+		       <% topico.marcos.each do |marco| %>
+		      <div style="display: none;" id="<%= marco.id %>m">
+
+				 <p><---><b><%= marco.sigla %> </b> | <%= marco.descricao %></p>
+		     </div>
+			<script>
+				$(function(){
+					$(document).on('click', "#<%= topico.id %>t", function() {
+			        	$("#<%= marco.id %>m").css('display', 'block');
+						$(this).attr("id","<%= topico.id %>tt").html("<i class='fa fa-window-minimize'></i>");
+
+					});
+					$(document).on('click', "#<%= topico.id %>tt", function() {
+			        	$("#<%= marco.id %>m").css('display', 'none');
+						$(this).attr("id","<%= topico.id %>t").html("<i class='fa fa-plus'></i>");
+
+					});
+
+					$(document).on('click', "#<%= sessao.id %>", function() {
+						$("#<%= topico.id %>s").css('display', 'block');
+						$(this).attr("id","<%= sessao.id %>k").html("<i class='fa fa-window-minimize'></i>");
+
+					});
+						
+					$(document).on('click', "#<%= sessao.id %>k", function() {
+						$("#<%= topico.id %>s").css('display', 'none');
+			        	$("#<%= marco.id %>m").css('display', 'none');
+
+					  $(this).attr("id","<%= sessao.id %>").html("<i class='fa fa-plus'></i>");
+
+					$("#<%= topico.id %>tt").attr("id","<%= topico.id %>t").html("<i class='fa fa-plus'></i>");
+
+
+					});
+
+				});
+				</script>
+
+		       <% end %>
+		       <hr>
+
+		      <% end %>
+
+
+<% end %>
+</div>

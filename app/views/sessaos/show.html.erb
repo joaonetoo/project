@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Questionario:</strong>
+  <%= @sessao.questionario %>
+</p>
+
+<p>
+  <strong>Sigla:</strong>
+  <%= @sessao.sigla %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @sessao.descricao %>
+</p>
+
+<%= link_to 'Edit', edit_sessao_path(@sessao) %> |
+<%= link_to 'Back', sessaos_path %>

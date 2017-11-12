@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Topico:</strong>
+  <%= @marco.topico %>
+</p>
+
+<p>
+  <strong>Sigla:</strong>
+  <%= @marco.sigla %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @marco.descricao %>
+</p>
+
+<%= link_to 'Edit', edit_marco_path(@marco) %> |
+<%= link_to 'Back', marcos_path %>

@@ -1,0 +1,34 @@
+
+<p id="notice"><%= notice %></p>
+    <h2 class="page-header">Todos Os Tópicos</h2>
+
+    <div class="panel-body">
+        <div class="table-responsive table-bordered">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Tópico</th>
+                    <th>Sigla</th>
+                    <th>Descricao</th>
+                    <th colspan="2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @marcos.each do |marco| %>
+                        <tr>
+                            <td><%= marco.topico.sigla %></td>
+                            <td><%= marco.sigla %></td>
+                             <td><%= marco.descricao %></td>
+                            <td><%= link_to 'Editar', edit_marco_path(marco) %></td>
+                            <td><%= link_to 'Excluir', marco, method: :delete, data: { confirm: 'Você está certo disso?' } %></td>
+
+                        </tr>
+                  <% end %>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+
+
+<%= link_to 'Cadastrar Novo Marco', new_marco_path %>
