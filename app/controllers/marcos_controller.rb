@@ -1,5 +1,6 @@
 class MarcosController < ApplicationController
   before_action :set_marco, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
 
   # GET /marcos
   # GET /marcos.json

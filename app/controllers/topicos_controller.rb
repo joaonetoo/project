@@ -1,5 +1,6 @@
 class TopicosController < ApplicationController
   before_action :set_topico, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
 
   # GET /topicos
   # GET /topicos.json

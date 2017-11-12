@@ -1,4 +1,4 @@
 class Resultado < ActiveRecord::Base
   belongs_to :questionario
-  has_many :marcos
+   belongs_to :marcos
 end

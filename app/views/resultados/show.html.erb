@@ -1,3 +1,27 @@
+
+
 <p id="notice"><%= notice %></p>
+    <h2 class="page-header">Resultado</h2>
+
+    <div class="panel-body">
+        <div class="table-responsive table-bordered">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th colspan="1"></th>
+                  </tr>
+                </thead>
+              <tbody>
+                  <% @marcos.length.times do |topico| %>
+                    <tr>
+                      <td><%= @marcos[topico].sigla %></td>
+                      <td><%= @valores[topico] %></td>
+                     </tr>
+                  <% end %>
+                </tbody>            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
 
 

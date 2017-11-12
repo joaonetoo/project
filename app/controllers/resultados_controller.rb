@@ -1,5 +1,6 @@
 class ResultadosController < ApplicationController
   before_action :set_resultado, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!,only: [:index,:new,:create,:show, :edit, :update, :destroy]
 
   # GET /resultados
   # GET /resultados.json
@@ -10,6 +11,43 @@ class ResultadosController < ApplicationController
   # GET /resultados/1
   # GET /resultados/1.json
   def show
+    @questionario = Questionario.find(@resultado.questionario_id)
+    s = Sessao.all
+    t = Topico.all
+    @m = Marco.all
+
+    @sessoes = []
+    @topicos = []
+    s.each do |sessao|
+      if sessao.questionario_id == @questionario.id
+        @sessoes << sessao
+      end
+    end
+    @sessoes.each do |sessao|
+      t.each do |topico|
+        if topico.sessao_id == sessao.id
+          @topicos << topico
+        end
+      end
+    end
+    @marcos =[]
+
+    @topicos.each do |topico|
+      @m.each do |marco|
+        if marco.topico_id == topico.id
+          @marcos << marco
+        end
+      end
+    end
+    @marcos
+    @valores =[]
+    @marcos.each do |marco|
+      if @resultado.marcos.include?(marco)
+        @valores << 1
+      else
+        @valores << 0
+      end
+    end 
   end
 
   # GET /resultados/new
@@ -62,12 +100,13 @@ class ResultadosController < ApplicationController
   end
 
   def resultado_quest
-    @questioanario = Questionario.find(params[:id])
+    @questionario = Questionario.find(params[:id])
     r = params[:marcos]
     @results = Resultado.new
     r.each do |m|
       m2 = Marco.find(m)
       @results.marcos << m2
+    @results.questionario_id = @questionario.id
     @results.save
     end
 

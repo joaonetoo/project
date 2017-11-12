@@ -1,5 +1,6 @@
 class QuestionariosController < ApplicationController
-  before_action :set_questionario, only: [:show, :edit, :update, :destroy,:results]
+  before_action :authenticate_admin!, only: [:new,:edit,:update, :destroy]
+  before_action :set_questionario, only: [:show, :edit, :update, :destroy]
 
   # GET /questionarios
   # GET /questionarios.json
@@ -10,9 +11,9 @@ class QuestionariosController < ApplicationController
   # GET /questionarios/1
   # GET /questionarios/1.json
   def show
-    @sessoes = Sessao.where(questionario_id: @questionario)
-    @topicos = Topico.where(sessao_id: @sessoes)
-    @marcos = Marco.where(topico_id: @topicos)
+    @sessoes = Sessao.where(questionario_id: @questionario).order('sigla')
+    @topicos = Topico.where(sessao_id: @sessoes).order('sigla')
+    @marcos = Marco.where(topico_id: @topicos).order('sigla')
   end
 
   # GET /questionarios/new
