@@ -12,9 +12,9 @@ class ResultadosController < ApplicationController
   # GET /resultados/1.json
   def show
     @questionario = Questionario.find(@resultado.questionario_id)
-    s = Sessao.all
-    t = Topico.all
-    @m = Marco.all
+    s = Sessao.order(:sigla).all
+    t = Topico.order(:sigla).all
+    @m = Marco.order(:sigla).all
 
     @sessoes = []
     @topicos = []
@@ -39,7 +39,6 @@ class ResultadosController < ApplicationController
         end
       end
     end
-    @marcos
     @valores =[]
     @marcos.each do |marco|
       if @resultado.marcos.include?(marco)

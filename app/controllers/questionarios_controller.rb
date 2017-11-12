@@ -11,9 +11,7 @@ class QuestionariosController < ApplicationController
   # GET /questionarios/1
   # GET /questionarios/1.json
   def show
-    @sessoes = Sessao.where(questionario_id: @questionario).order('sigla')
-    @topicos = Topico.where(sessao_id: @sessoes).order('sigla')
-    @marcos = Marco.where(topico_id: @topicos).order('sigla')
+    @sessoes = Sessao.order(:sigla).where(questionario_id: @questionario.id)
   end
 
   # GET /questionarios/new
