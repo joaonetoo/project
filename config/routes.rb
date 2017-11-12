@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :resultados do
+    collection do
+        post 'resultado_quest'
+      end
+  end
   devise_for :admins
   get 'questionarios/index'
   root 'questionarios#index'
@@ -6,7 +11,9 @@ Rails.application.routes.draw do
   resources :topicos
   resources :sessaos
   resources :questionarios
+
   resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

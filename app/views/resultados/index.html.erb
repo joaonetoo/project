@@ -1,0 +1,29 @@
+
+
+<p id="notice"><%= notice %></p>
+    <h2 class="page-header">Resultados</h2>
+
+    <div class="panel-body">
+        <div class="table-responsive table-bordered">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th colspan="1"></th>
+                  </tr>
+                </thead>
+              <tbody>
+                  <% @resultados.each do |resultado| %>
+                    <tr>
+                      <td><%= resultado.id %></td>
+                      <td><%= link_to 'Show', resultado %></td>
+<!--                       <td><%= link_to 'Edit', edit_resultado_path(resultado) %></td>
+                    <td><%= link_to 'Destroy', resultado, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                     -->                    </tr>
+                  <% end %>
+                </tbody>            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+
+

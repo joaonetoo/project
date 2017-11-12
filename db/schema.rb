@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111212911) do
+ActiveRecord::Schema.define(version: 20171112032710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,10 +38,12 @@ ActiveRecord::Schema.define(version: 20171111212911) do
     t.integer  "topico_id"
     t.string   "sigla"
     t.string   "descricao"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "resultado_id"
   end
 
+  add_index "marcos", ["resultado_id"], name: "index_marcos_on_resultado_id", using: :btree
   add_index "marcos", ["topico_id"], name: "index_marcos_on_topico_id", using: :btree
 
   create_table "questionarios", force: :cascade do |t|
@@ -49,6 +51,14 @@ ActiveRecord::Schema.define(version: 20171111212911) do
     t.datetime "updated_at", null: false
     t.string   "titulo"
   end
+
+  create_table "resultados", force: :cascade do |t|
+    t.integer  "questionario_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "resultados", ["questionario_id"], name: "index_resultados_on_questionario_id", using: :btree
 
   create_table "sessaos", force: :cascade do |t|
     t.integer  "questionario_id"
@@ -77,7 +87,9 @@ ActiveRecord::Schema.define(version: 20171111212911) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "marcos", "resultados"
   add_foreign_key "marcos", "topicos"
+  add_foreign_key "resultados", "questionarios"
   add_foreign_key "sessaos", "questionarios"
   add_foreign_key "topicos", "sessaos"
 end

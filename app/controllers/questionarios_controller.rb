@@ -1,5 +1,5 @@
 class QuestionariosController < ApplicationController
-  before_action :set_questionario, only: [:show, :edit, :update, :destroy]
+  before_action :set_questionario, only: [:show, :edit, :update, :destroy,:results]
 
   # GET /questionarios
   # GET /questionarios.json
@@ -63,7 +63,6 @@ class QuestionariosController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_questionario
@@ -72,6 +71,6 @@ class QuestionariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def questionario_params
-      params.require(:questionario).permit(:titulo)
+      params.require(:questionario).permit(:id,:titulo)
     end
 end
